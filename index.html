@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Pizza</title>
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+
+<body>
+    <div class="header">
+        <h1 style="background-color: rgb(249, 253, 252);">Zee's Perfect Pizza <img src="pizza icon.jpg" width="60"
+                height="50"> </h1>
+        <img src="pizza stock.jpg">
+    </div>
+    <div class="container">
+        <div class="pizza contact_us" style="background-color: rgb(173, 250, 224);">
+            <h2>Online Shopping Cart</h2>
+            <div style="background-color: rgb(45, 226, 226);">                    
+            </div>
+            <div class="pizzas">
+                <div class="pizza small_pizza">
+                    <h2>Small Pizza</h2>
+                    <img src="pizza 2.jpg" width="125">
+                    <h3>R49.00</h3>
+                    <button class="btn" onclick="addToCart('small')">ORDER</button>
+                    <div> Small Pizza Sweet Chilli, Hawaian, Tropical / Greek with 3 toppings 1 meat topping.</div>
+                </div>
+                <div class="pizza medium_pizza">
+                    <h2>Medium Pizza</h2>
+                    <img src="pizza.jpg" width="190">
+                    <h3>R89.00</h3>
+                    <button class="btn" onclick="addToCart('medium')">ORDER</button>
+                    <div>
+                        Medium Pizza margeritha, Cheese and Bacon with 3 toppings. 1 meat topping.</div>
+                </div>
+                <div class="pizza large_pizza">
+                    <h2>large Pizza</h2>
+                    <img src="pizza 2.jpg" width="210" height="200">
+                    <h3>R129.00</h3>
+                    <button class="btn" onclick="addToCart('large')">ORDER</button>
+                    <div>
+                        Large Pizza triple Chicken and Mashroom with 5 or less toppings. 2 meat topping. 3 or less other toppings.</div>
+                </div>
+            </div>
+            <div class="container cart" id="cart" style="display: none;">
+                <h2>Shopping Cart</h2>
+                <div id="cart-items" class="cart-items"></div>
+                <h3>Total: <span id="total" class="total">R0.00</span></h3>
+                <label for="paymentAmount">Enter Payment Amount:</label>
+                <input type="number" id="paymentAmount" name="paymentAmount" placeholder="Enter amount...">
+                <button class="btn checkout-btn" onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <div id="message" class="container message"></div>
+    <div id="error-message" class="container error-message"></div>
+
+    
+    <script>
+        let cart = [];
+        let totalCost = 0;
+
+        function addToCart(size) {
+            let item = {
+                size: size,
+                cost: getSizeCost(size)
+            };
+            cart.push(item);
+            totalCost += item.cost;
+
+            updateCartDisplay();
+        }
+
+        function getSizeCost(size) {
+            switch (size) {
+                case 'small':
+                    return 49.00;
+                case 'medium':
+                    return 89.00;
+                case 'large':
+                    return 129.00;
+                default:
+                    return 0.00;
+            }
+        }
+
+        function updateCartDisplay() {
+            let cartItems = document.getElementById('cart-items');
+            let totalElement = document.getElementById('total');
+
+            cartItems.innerHTML = '';
+            cart.forEach(item => {
+                cartItems.innerHTML += `<div>${item.size.charAt(0).toUpperCase() + item.size.slice(1)} Pizza: R${item.cost.toFixed(2)}</div>`;
+            });
+
+            totalElement.textContent = `R${totalCost.toFixed(2)}`;
+
+            if (cart.length > 0) {
+                document.getElementById('cart').style.display = 'block';
+                document.querySelector('.checkout-btn').style.display = 'block';
+            } else {
+                document.getElementById('cart').style.display = 'none';
+                document.querySelector('.checkout-btn').style.display = 'none';
+            }
+        }
+
+        function checkout() {
+            let paymentAmount = parseFloat(document.getElementById('paymentAmount').value);
+
+            if (isNaN(paymentAmount) || paymentAmount <= 0) {
+                displayErrorMessage('Please enter a valid payment amount.');
+                return;
+            }
+
+            if (paymentAmount > totalCost) {
+                let change = paymentAmount - totalCost;
+                displayMessage(`Enjoy your pizzas! Your change: R${change.toFixed(2)}`);
+                clearCart();
+            } else if (paymentAmount < totalCost) {
+                displayErrorMessage('Sorry, that is not enough money!');
+            } else {
+                displayMessage('Enjoy your pizzas!');
+                clearCart();
+            }
+
+            setTimeout(() => {
+                clearMessages();
+            }, 3000);
+        }
+
+        function clearCart() {
+            cart = [];
+            totalCost = 0;
+            updateCartDisplay();
+            document.getElementById('paymentAmount').value = ''; // Clear payment input field
+        }
+
+        function displayMessage(msg) {
+            let messageElement = document.getElementById('message');
+            messageElement.textContent = msg;
+            messageElement.style.display = 'block';
+        }
+
+        function displayErrorMessage(msg) {
+            let errorMessageElement = document.getElementById('error-message');
+            errorMessageElement.textContent = msg;
+            errorMessageElement.style.display = 'block';
+        }
+
+        function clearMessages() {
+            document.getElementById('message').style.display = 'none';
+            document.getElementById('error-message').style.display = 'none';
+        }
+    </script>
+
+<div class="pizza contact_us">
+    <h2>Contact details</h2>
+    Contact us at: 011 890 2298
+    <div> info@perfectpizza.co.za</div>
+
+</body>
+
+</html>

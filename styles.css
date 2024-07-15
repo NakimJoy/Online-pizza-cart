@@ -1,0 +1,120 @@
+body {
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT96NrG53vu-CQJvu6hcqsTGnFQx2B6UURtaA&s);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.pizza {
+    /* border: 1px solid #080808; */
+    padding: 1em;
+    margin: 1em;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    border-radius: 0.5em;
+    text-align: center;
+    /* use display: inline-block; */
+    /*width: 20cm;
+    display: inline-block;
+    min-height: 30em; */
+}
+
+.header {
+    text-align: center;
+}
+
+.small_pizza {
+    background-color: #d0f15b;
+    flex: 2
+}
+
+.medium_pizza {
+    background-color: #f1925b;
+    flex: 2
+}
+
+.large_pizza {
+    background-color: #d0f15b;
+    flex: 2
+}
+
+.contact_us {
+    background-color: #f0e6e4;
+}
+
+@media (min-width: 850px) {
+    body {
+        background-image: url(https://t4.ftcdn.net/jpg/02/75/92/41/240_F_275924184_GP4ACV80EK8NokxlFaUB2qykpXKrroqx.jpg)
+    }
+
+    .pizzas {
+        display: flex;
+    }
+}
+
+.btn {
+    background-color: #77ec86;
+    color: white;
+    border-radius: 0.5em;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #5fd31c;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.pizza {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.pizzas {
+    display: flex;
+    justify-content: space-between;
+}
+
+.cart {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 5px;
+}
+
+.checkout-btn {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    display: none;
+    /* Initially hidden */
+}
+
+.checkout-btn:hover {
+    background-color: #00688B;
+}
+
+.message {
+    background-color: rgb(10, 10, 10);
+    color: rgb(10, 199, 10);
+    margin-top: 10px;
+    display: none;
+    /* Initially hidden */
+}
+
+.error-message {
+    background-color: rgb(219, 14, 14);
+    color: rgb(224, 210, 210);
+    margin-top: 10px;
+    display: none;
+    /* Initially hidden */
+}
