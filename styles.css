@@ -44,9 +44,28 @@ body {
     body {
         background-image: url(https://t4.ftcdn.net/jpg/02/75/92/41/240_F_275924184_GP4ACV80EK8NokxlFaUB2qykpXKrroqx.jpg)
     }
-
+    .pizza {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .pizza {
+        border: 1px solid #080808;
+        padding: 1em;
+        margin: 1em;
+        margin-left: 0.5em;
+        margin-bottom: 0.5em;
+        border-radius: 0.5em;
+        text-align: center;
+        /* use display: inline-block; */
+        /*width: 20cm;
+        display: inline-block;
+        min-height: 30em; */
+    }
     .pizzas {
         display: flex;
+        justify-content: space-between;
     }
 }
 
@@ -68,17 +87,6 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-}
-
-.pizza {
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.pizzas {
-    display: flex;
-    justify-content: space-between;
 }
 
 .cart {
